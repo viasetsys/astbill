@@ -659,7 +659,7 @@ echo
 cd /var/www/html/mbilling/
 rm -rf /var/www/html/mbilling/tmp 
 mkdir /var/www/html/mbilling/tmp
-mkdir /var/www/html/mbilling/assets
+#mkdir /var/www/html/mbilling/assets
 chown -R asterisk:asterisk /var/www/html/mbilling
 mkdir /var/run/magnus
 touch /etc/asterisk/extensions_magnus.conf
