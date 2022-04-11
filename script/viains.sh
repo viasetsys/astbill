@@ -657,10 +657,11 @@ echo -e "\e[32;42m==============================================================
 echo
 
 cd /var/www/html/mbilling/
-rm -rf /var/www/html/mbilling/tmp 
+rm -rf /var/www/html/mbilling/tmp
 mkdir /var/www/html/mbilling/tmp
 #mkdir /var/www/html/mbilling/assets
 chown -R asterisk:asterisk /var/www/html/mbilling
+chown -R asterisk:asterisk /var/www/html/mbilling/tmp
 mkdir /var/run/magnus
 touch /etc/asterisk/extensions_magnus.conf
 touch /etc/asterisk/extensions_magnus_did.conf
