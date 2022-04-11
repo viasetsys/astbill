@@ -338,10 +338,7 @@ make clean
 make menuselect.makeopts
 menuselect/menuselect --enable res_config_mysql  menuselect.makeopts
 menuselect/menuselect --enable format_mp3  menuselect.makeopts
-menuselect/menuselect --enable codec_opus  menuselect.makeopts
-menuselect/menuselect --enable codec_silk  menuselect.makeopts
-menuselect/menuselect --enable codec_siren7  menuselect.makeopts
-menuselect/menuselect --enable codec_siren14  menuselect.makeopts
+menuselect/menuselect --enable app_setcallerid  menuselect.makeopts
 make
 make install
 make samples
