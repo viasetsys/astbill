@@ -252,7 +252,19 @@ elif  [ ${DIST} = "CENTOS" ]; then
     yum-config-manager --enable remi-php71
     yum -y install php.`uname -m` php-cli.`uname -m` php-devel.`uname -m` php-gd.`uname -m` php-mbstring.`uname -m` php-pdo.`uname -m` php-xml.`uname -m` php-xmlrpc.`uname -m` php-process.`uname -m` php-posix libuuid uuid uuid-devel libuuid-devel.`uname -m`
     yum -y install jansson.`uname -m` jansson-devel.`uname -m` unzip.`uname -m` ntpd
-    yum -y install mysql mariadb-server mariadb-devel mariadb php-mysql mysql-connector-odbc
+	
+	sleep 2
+	echo
+	echo -e "\e[32;42m=================================================================================\e[m";
+	echo -e "\e[32;42m=================================================================================\e[m";
+	echo "";
+	echo " -7.1- Installing MariaDB Dependencies, Look for Errors";
+	echo "";
+	echo -e "\e[32;42m=================================================================================\e[m";
+	echo -e "\e[32;42m=================================================================================\e[m";
+	echo
+    
+	yum -y install mysql mariadb-server mariadb-devel mariadb php-mysql mysql-connector-odbc
     yum -y install xmlstarlet libsrtp libsrtp-devel dmidecode gtk2-devel binutils-devel svn libtermcap-devel libtiff-devel audiofile-devel cronie cronie-anacron
     yum -y install perl perl-libwww-perl perl-LWP-Protocol-https perl-JSON cpan flac libcurl-devel nss
     yum -y install libpcap-devel autoconf automake git ncurses-devel ssmtp htop
