@@ -286,7 +286,7 @@ echo
 
 cd /var/www/html/
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build.tar.gz
-tar -xzvf viaset-build.tar.gz
+tar -xzf viaset-build.tar.gz
 
 sleep 2
 echo
@@ -301,7 +301,7 @@ echo
 
 cd /usr/src
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/jansson.tar.gz
-tar -zxvf jansson.tar.gz
+tar -xzf jansson.tar.gz
 cd jansson-2.7
 ./configure
 make clean
@@ -323,7 +323,7 @@ cd /usr/src
 rm -rf asterisk*
 
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/asterisk.tar.gz
-tar -xzvf asterisk.tar.gz
+tar -xzf asterisk.tar.gz
 rm -rf asterisk-13.35.0.tar.gz
 cd asterisk-*
 useradd -c 'Asterisk PBX' -d /var/lib/asterisk asterisk
@@ -401,7 +401,7 @@ echo
 if [ ${DIST} = "CENTOS" ]; then
     cd /usr/src
     wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-comp.tar.bz2
-    tar -xjvf viaset-comp.tar.bz2
+    tar -xjf viaset-comp.tar.bz2
     cd mpg123-1.20.1
     ./configure && make && make install
 

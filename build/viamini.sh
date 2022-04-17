@@ -85,89 +85,6 @@ echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
 echo "";
-echo " -3- Setting Time-Zone";
-echo "";
-echo -e "\e[32;42m=================================================================================\e[m";
-echo -e "\e[32;42m=================================================================================\e[m";
-echo
-
-set_timezone ()
-{ 
-  yum -y install ntp
-  directory=/usr/share/zoneinfo
-  for (( l = 0; l < 5; l++ )); do
-
-    echo "entrar no diretorio $directory"
-    cd $directory
-    files=("")  
-
-    i=0
-    s=65    # decimal ASCII "A" 
-    for f in *
-    do
-
-      if [[ "$i" = "0" && "$l" = "0" ]]; then
-        files[i]="BRASIL Brasilia"
-        files[i+1]=""
-      else
-        files[i]="$f"
-          files[i+1]=""
-      fi      
-        ((i+=2))
-        ((s++))
-    done
-
-    files[i+1]="MAIN MENU"
-    files[i+2]="Back to main menu"
-
-    zone=$(whiptail --title "Restore Files" --menu "Please select your timezone" 20 60 12 "${files[@]}" 3>&1 1>&2 2>&3)
-
-
-    if [ "$zone" = "BRASIL Brasilia" ]; then
-      echo "é um arquivo, setar timezone BRASIL"
-      directory=$directory/America/Sao_Paulo  
-      break
-    fi
-
-    directory=$directory/$zone
-
-
-    if [ -f "$directory" ]; then
-      #echo "é um arquivo, setar timezone"
-      break
-    fi
-
-    if [ "$zone" = "MAIN MENU" ]; then
-      directory=/usr/share/zoneinfo
-      l=0
-    fi
-
-    if test -z "$zone"; then
-      break
-    fi  
-
-    echo fim do loop
-
-  done
-
-  if [ -f "$directory" ]; then    
-    rm -f /etc/localtime
-    ln -s $directory /etc/localtime
-    phptimezone="${directory//\/usr\/share\/zoneinfo\//}"
-    phptimezone="${phptimezone////\/}"
-    sed -i '/date.timezone/s/= .*/= '$phptimezone'/' /etc/php.ini
-    systemctl reload httpd
-  fi
-
-}
-
-set_timezone
-
-sleep 2
-echo
-echo -e "\e[32;42m=================================================================================\e[m";
-echo -e "\e[32;42m=================================================================================\e[m";
-echo "";
 echo " -4- Generating Mysql Password";
 echo "";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -219,7 +136,7 @@ fi
 if [ ${DIST} = "CENTOS" ]; then
 echo '[mariadb]
 name = MariaDB
-baseurl = http://yum.mariadb.org/10.2/centos7-amd64/
+baseurl = http://yum.mariadb.org/10.2.43/centos74-amd64/
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1' > /etc/yum.repos.d/MariaDB.repo
 fi
