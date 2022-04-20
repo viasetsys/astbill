@@ -296,9 +296,10 @@ echo -e "\e[32;42m==============================================================
 echo -e "\e[32;42m=================================================================================\e[m";
 echo
 
-cd /var/www/html/
-wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build.tar.gz
-tar -xzf viaset-build.tar.gz
+mkdir -p /var/www/html/mbilling
+cd /var/www/html/mbilling
+wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build.onfl.tar.gz
+tar -xzf viaset-build.onfl.tar.gz
 
 sleep 2
 echo
