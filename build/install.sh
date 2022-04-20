@@ -20,7 +20,7 @@ sleep 3
 
 
 if [[ -f /var/www/html/mbilling/index.php ]]; then
-  echo "this server alread have MagnusBilling installed";
+  echo "This server already has MagnusBilling installed";
   exit;
 fi
 # Linux Distribution CentOS or Debian
@@ -126,7 +126,6 @@ set_timezone ()
     ln -s $directory /etc/localtime
     phptimezone="${directory//\/usr\/share\/zoneinfo\//}"
     phptimezone="${phptimezone////\/}"
-    sed -i '/date.timezone/s/= .*/= '$phptimezone'/' /etc/php.ini
     systemctl reload httpd
   fi
 
@@ -156,7 +155,7 @@ fi
 if [ ${DIST} = "CENTOS" ]; then
 echo '[mariadb]
 name = MariaDB
-baseurl = http://yum.mariadb.org/10.1/centos7-amd64
+baseurl = http://yum.mariadb.org/10.2/centos7-amd64
 gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1' > /etc/yum.repos.d/MariaDB.repo 
 fi
@@ -176,7 +175,7 @@ elif  [ ${DIST} = "CENTOS" ]; then
     yum -y install yum-utils gcc.`uname -m` gcc-c++.`uname -m` make.`uname -m` git.`uname -m` wget.`uname -m` bison.`uname -m` openssl-devel.`uname -m` ncurses-devel.`uname -m` doxygen.`uname -m` newt-devel.`uname -m` mlocate.`uname -m` lynx.`uname -m` tar.`uname -m` wget.`uname -m` nmap.`uname -m` bzip2.`uname -m` mod_ssl.`uname -m` speex.`uname -m` speex-devel.`uname -m` unixODBC.`uname -m` unixODBC-devel.`uname -m` libtool-ltdl.`uname -m` sox libtool-ltdl-devel.`uname -m` flex.`uname -m` screen.`uname -m` autoconf automake libxml2.`uname -m` libxml2-devel.`uname -m` sqlite* subversion
     yum-config-manager --enable remi-php71
     yum -y install php.`uname -m` php-cli.`uname -m` php-devel.`uname -m` php-gd.`uname -m` php-mbstring.`uname -m` php-pdo.`uname -m` php-xml.`uname -m` php-xmlrpc.`uname -m` php-process.`uname -m` php-posix libuuid uuid uuid-devel libuuid-devel.`uname -m`
-    yum -y install jansson.`uname -m` jansson-devel.`uname -m` unzip.`uname -m` ntpd
+    yum -y install jansson.`uname -m` jansson-devel.`uname -m` unzip.`uname -m` ntp
     yum -y install mysql mariadb-server  mariadb-devel mariadb php-mysql mysql-connector-odbc
     yum -y install xmlstarlet libsrtp libsrtp-devel dmidecode gtk2-devel binutils-devel svn libtermcap-devel libtiff-devel audiofile-devel cronie cronie-anacron
     yum -y install perl perl-libwww-perl perl-LWP-Protocol-https perl-JSON cpan flac libcurl-devel nss
@@ -186,7 +185,7 @@ fi
 
 mkdir -p /var/www/html/mbilling
 cd /var/www/html/mbilling
-wget https://raw.githubusercontent.com/magnussolution/magnusbilling7/source/build/MagnusBilling-current.tar.gz
+wget --no-check-certificate https://raw.githubusercontent.com/magnussolution/magnusbilling7/source/build/MagnusBilling-current.tar.gz
 tar xzf MagnusBilling-current.tar.gz
 
 echo
@@ -194,7 +193,7 @@ echo '----------- Install PJPROJECT ----------'
 echo
 sleep 1
 cd /usr/src
-wget http://www.digip.org/jansson/releases/jansson-2.7.tar.gz
+wget --no-check-certificate http://www.digip.org/jansson/releases/jansson-2.7.tar.gz
 tar -zxvf jansson-2.7.tar.gz
 cd jansson-2.7
 ./configure
@@ -210,7 +209,6 @@ cd /usr/src
 rm -rf asterisk*
 clear
 mv /var/www/html/mbilling/script/asterisk-13.35.0.tar.gz /usr/src/
-#wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13-current.tar.gz
 tar xzvf asterisk-13.35.0.tar.gz
 rm -rf asterisk-13.35.0.tar.gz
 cd asterisk-*
@@ -262,7 +260,7 @@ chmod -R 777 /tmp
  
 if [ ${DIST} = "CENTOS" ]; then
     cd /usr/src
-    wget http://magnussolution.com/download/mpg123-1.20.1.tar.bz2
+    wget --no-check-certificate http://magnussolution.com/download/mpg123-1.20.1.tar.bz2
     tar -xjvf mpg123-1.20.1.tar.bz2
     cd mpg123-1.20.1
     ./configure && make && make install
@@ -362,7 +360,7 @@ sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 3M /" ${PHP_INI}
 sed -i "s/post_max_size = 8M/post_max_size = 20M/" ${PHP_INI}
 sed -i "s/max_execution_time = 30/max_execution_time = 90/" ${PHP_INI}
 sed -i "s/max_input_time = 60/max_input_time = 120/" ${PHP_INI}
-sed -i "s/\;date.timezone =/date.timezone = America\/Sao_Paulo/" ${PHP_INI}
+sed -i '/date.timezone/s/= .*/= '$phptimezone'/' ${PHP_INI}
 if [ ${DIST} = "CENTOS" ]; then
     sed -i "s/User apache/User asterisk/" ${HTTP_CONFIG}
     sed -i "s/Group apache/Group asterisk/" ${HTTP_CONFIG}
@@ -464,7 +462,7 @@ fi;
 
 cd  /var/www/html/mbilling/resources/images/
 rm -rf lock-screen-background.jpg
-wget http://magnusbilling.org/downloadlock-screen-background.jpg
+wget --no-check-certificate https://magnusbilling.org/download/lock-screen-background.jpg
 
 
 cd /var/www/html/mbilling/
@@ -511,7 +509,7 @@ installBr() {
    clear
    language='br'
    cd /var/lib/asterisk
-   wget https://sourceforge.net/projects/disc-os/files/Disc-OS%20Sounds/1.0-RELEASE/Disc-OS-Sounds-1.0-pt_BR.tar.gz
+   wget --no-check-certificate https://sourceforge.net/projects/disc-os/files/Disc-OS%20Sounds/1.0-RELEASE/Disc-OS-Sounds-1.0-pt_BR.tar.gz
    tar xzf Disc-OS-Sounds-1.0-pt_BR.tar.gz
    rm -rf Disc-OS-Sounds-1.0-pt_BR.tar.gz
 
@@ -880,7 +878,8 @@ iptables -A INPUT -j DROP -p udp --dport 5060 -m string --string "VaxSIPUserAgen
 if [ ${DIST} = "DEBIAN" ]; then
     echo iptables-persistent iptables-persistent/autosave_v4 boolean true | debconf-set-selections
     echo iptables-persistent iptables-persistent/autosave_v6 boolean true | debconf-set-selections
-    apt-get install -y --force-yes  iptables-persistent
+    apt-get install -y iptables-persistent
+    sudo iptables-save > /etc/iptables/rules.v4
 elif [ ${DIST} = "CENTOS" ]; then
     service iptables save
     systemctl restart iptables
