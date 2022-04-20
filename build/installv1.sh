@@ -1,22 +1,18 @@
 #!/bin/bash
-clear
-echo
-echo
-echo
-echo "===================BY WWW.MAGNUSSOLUTION.COM=========================";
-echo "_      _                               ______ _ _ _ _                ";
-echo "|\    /|                               | ___ (_) | (_)               ";
-echo "| \  / | ___  ____  _ __  _   _  _____ | |_/ /_| | |_ _ __   ____    ";
-echo "|  \/  |/   \/  _ \| '_ \| | | \| ___| | ___ \ | | | | '_ \ /  _ \   ";
-echo "| |\/| |  | |  (_| | | | | |_| ||____  | |_/ / | | | | | | |  (_| |  ";
-echo "|_|  |_|\___|\___  |_| | |_____|_____|  \___/|_|_|_|_|_| |_|\___  |  ";
-echo "                _/ |                                           _/ |  ";
-echo "               |__/                                           |__/   ";
-echo "                                                                     ";
-echo "======================= VOIP SYSTEM FOR LINUX =======================";
-echo
 
-sleep 3
+echo
+echo -e "\e[32;42m=================================================================================\e[m";
+echo -e "\e[32;42m=================================================================================\e[m";
+echo -e "\e[5m  __     _____    _    ____  _____ _____   ____ ___ _     _     ___ _   _  ____  \e[m";
+echo -e "\e[5m  \ \   / /_ _|  / \  / ___|| ____|_   _| | __ )_ _| |   | |   |_ _| \ | |/ ___| \e[m";
+echo -e "\e[5m   \ \ / / | |  / _ \ \___ \|  _|   | |   |  _ \| || |   | |    | ||  \| | |  _  \e[m";
+echo -e "\e[5m    \ V /  | | / ___ \ ___) | |___  | |   | |_) | || |___| |___ | || |\  | |_| | \e[m";
+echo -e "\e[5m     \_/  |___/_/   \_\____/|_____| |_|   |____/___|_____|_____|___|_| \_|\____| \e[m";
+echo -e "\e[5m                                                                                 \e[m";
+echo -e "\e[32;42m=================================================================================\e[m";
+echo -e "\e[32;42m=================================================================================\e[m";
+echo
+sleep 2
 
 
 if [[ -f /var/www/html/mbilling/index.php ]]; then
@@ -185,16 +181,17 @@ fi
 
 mkdir -p /var/www/html/mbilling
 cd /var/www/html/mbilling
-wget --no-check-certificate https://raw.githubusercontent.com/magnussolution/magnusbilling7/source/build/MagnusBilling-current.tar.gz
-tar xzf MagnusBilling-current.tar.gz
+wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build-onfl.tar.gz
+tar -xzf viaset-build-onfl.tar.gz
 
 echo
 echo '----------- Install PJPROJECT ----------'
 echo
 sleep 1
+
 cd /usr/src
-wget --no-check-certificate http://www.digip.org/jansson/releases/jansson-2.7.tar.gz
-tar -zxvf jansson-2.7.tar.gz
+wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/jansson.tar.gz
+tar -xzf jansson.tar.gz
 cd jansson-2.7
 ./configure
 make clean
@@ -207,9 +204,9 @@ echo
 sleep 1
 cd /usr/src
 rm -rf asterisk*
-clear
-mv /var/www/html/mbilling/script/asterisk-13.35.0.tar.gz /usr/src/
-tar xzvf asterisk-13.35.0.tar.gz
+
+wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/asterisk.tar.gz
+tar -xzf asterisk.tar.gz
 rm -rf asterisk-13.35.0.tar.gz
 cd asterisk-*
 useradd -c 'Asterisk PBX' -d /var/lib/asterisk asterisk
@@ -233,7 +230,7 @@ make samples
 make config
 ldconfig
 
-clear
+
 
 echo
 echo '----------- Install SNGRP ----------'
@@ -252,7 +249,7 @@ cd sngrep
 ./bootstrap.sh
 ./configure
 make && make install 
-clear
+
 fi
 
 
@@ -260,8 +257,8 @@ chmod -R 777 /tmp
  
 if [ ${DIST} = "CENTOS" ]; then
     cd /usr/src
-    wget --no-check-certificate http://magnussolution.com/download/mpg123-1.20.1.tar.bz2
-    tar -xjvf mpg123-1.20.1.tar.bz2
+    wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-comp.tar.bz2
+    tar -xjf viaset-comp.tar.bz2
     cd mpg123-1.20.1
     ./configure && make && make install
 
@@ -290,29 +287,6 @@ if [ ${DIST} = "CENTOS" ]; then
       LogFormat '\"%r\" %{outstream}n/%{instream}n (%{ratio}n%%)' deflate
     </IfModule>
     " >> /etc/httpd/conf.d/deflate.conf
-
-    echo "
-    <IfModule mod_expires.c>
-     ExpiresActive On
-     ExpiresByType image/jpg \"access plus 60 days\"
-     ExpiresByType image/png \"access plus 60 days\"
-     ExpiresByType image/gif \"access plus 60 days\"
-     ExpiresByType image/jpeg \"access plus 60 days\"
-     ExpiresByType text/css \"access plus 1 days\"
-     ExpiresByType image/x-icon \"access plus 1 month\"
-     ExpiresByType application/pdf \"access plus 1 month\"
-     ExpiresByType audio/x-wav \"access plus 1 month\"
-     ExpiresByType audio/mpeg \"access plus 1 month\"
-     ExpiresByType video/mpeg \"access plus 1 month\"
-     ExpiresByType video/mp4 \"access plus 1 month\"
-     ExpiresByType video/quicktime \"access plus 1 month\"
-     ExpiresByType video/x-ms-wmv \"access plus 1 month\"
-     ExpiresByType application/x-shockwave-flash \"access 1 month\"
-     ExpiresByType text/javascript \"access plus 1 week\"
-     ExpiresByType application/x-javascript \"access plus 1 week\"
-     ExpiresByType application/javascript \"access plus 1 week\"
-    </IfModule>
-    " >> /etc/httpd/conf.d/expire.conf
 fi
 
 echo '
@@ -385,7 +359,8 @@ else [ -f /etc/redhat-release ]
     systemctl enable httpd
     systemctl enable mariadb
     systemctl start mariadb
-    chkconfig ntpd on
+	systemctl enable ntpd
+	
 fi
 
 
@@ -451,7 +426,7 @@ fi;
 
 startup_services
 
-clear
+
 echo
 echo '----------- Installing the Web Interface ----------'
 echo
@@ -462,7 +437,7 @@ fi;
 
 cd  /var/www/html/mbilling/resources/images/
 rm -rf lock-screen-background.jpg
-wget --no-check-certificate https://magnusbilling.org/download/lock-screen-background.jpg
+wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/lock-screen-background.jpg
 
 
 cd /var/www/html/mbilling/
@@ -506,7 +481,7 @@ cp -rf /var/www/html/mbilling/resources/sounds/es /var/lib/asterisk/sounds
 cp -rf /var/www/html/mbilling/resources/sounds/en /var/lib/asterisk/sounds
 
 installBr() {
-   clear
+   
    language='br'
    cd /var/lib/asterisk
    wget --no-check-certificate https://sourceforge.net/projects/disc-os/files/Disc-OS%20Sounds/1.0-RELEASE/Disc-OS-Sounds-1.0-pt_BR.tar.gz
@@ -521,13 +496,13 @@ installBr() {
 }
 
 installEn() {
-    clear
+    
     language='en'
     cp -n /var/www/html/mbilling/resources/sounds/en/* /var/lib/asterisk/sounds
 }
 
 installEs() {
-  clear
+  
   language='es'
   mkdir -p /var/lib/asterisk/sounds/es
   cd /var/lib/asterisk/sounds/es
@@ -555,6 +530,8 @@ fi
 cd /var/www/html/mbilling
 
 echo $'[billing]
+;exten => _[*0-9].,1,Set(CALLERID(num)=${IF($[ ${CALLERID(num)} = 2000 ]?${EXTEN:0:5}${RAND(210000,999999)}:${CALLERID(num)}) })
+;exten => _[*0-9].,2,NoOp(## DIALED ## ${EXTEN} ## CALL-ID ## ${CALLERID(num)} ##)
 exten => _[*0-9].,1,AGI("/var/www/html/mbilling/resources/asterisk/mbilling.php")
   same => n,Hangup()
 
@@ -691,16 +668,14 @@ astrundir => /var/run/asterisk
 astlogdir => /var/log/asterisk
 
 [options]
-documentation_language = en_US  
-' > /etc/asterisk/asterisk.conf
-
-echo "
-[options]
+documentation_language = en_US
 verbose = 5
 debug = 0
 maxfiles = 500000
 
-[compat]
+' > /etc/asterisk/asterisk.conf
+
+echo "[compat]
 pbx_realtime=1.6
 res_agi=1.6
 app_set=1.6" >> /etc/asterisk/asterisk.conf
@@ -745,7 +720,7 @@ echo "
 * * * * * php /var/www/html/mbilling/cron.php MassiveCall
 * * * * * php /var/www/html/mbilling/cron.php Sms
 0 2 * * * php /var/www/html/mbilling/cron.php Backup
-0 4 * * * /var/www/html/mbilling/protected/commands/clear_memory
+0 4 * * * /var/www/html/mbilling/protected/commands/_memory
 */2 * * * * php /var/www/html/mbilling/cron.php SummaryTablesCdr
 * * * * * php /var/www/html/mbilling/cron.php cryptocurrency
 */3 * * * * php /var/www/html/mbilling/cron.php PhoneBooksReprocess
@@ -865,7 +840,10 @@ iptables -P OUTPUT ACCEPT
 iptables -A INPUT -p udp -m udp --dport 5060 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 10000:20000 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 5544 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 443 -j DROP
+iptables -A INPUT -p tcp -m tcp --dport 111 -j DROP
+iptables -A INPUT -p udp -m udp --dport 111 -j DROP
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "friendly-scanner" --algo bm
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "sundayddr" --algo bm
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "sipsak" --algo bm
@@ -1164,7 +1142,7 @@ processor_type()
         else _64BIT=0;
     fi;
 }
-clear 
+ 
 echo "INSTALLING G723 and G729 CODECS......... FROM http://asterisk.hosting.lv";   
 cd /usr/src
 rm -rf codec_*
@@ -1201,6 +1179,6 @@ sleep 4
 asterisk -rx 'core show translation'
 
 
-whiptail --title "MagnusBilling Instalation Result" --msgbox "Congratulations! You have installed MagnusBilling in your Server.\n\nAccess your MagnusBilling in http://your_ip/ \n  Username = root \n  Password = magnus \n\nYour mysql root password is $password\n\n\nPRESS ANY KEY TO REBOOT YOUR SERVER" --fb 20 70
+whiptail --title "Installation Result" --msgbox "Congratulations! You have installed Viaset Billing in your Server.\n\nAccess your server from http://your_ip/ \n  Username = root \n  Password = magnus \n\nYour mysql root password is $password\n\n\nPRESS ANY KEY TO REBOOT YOUR SERVER" --fb 20 70
 
 reboot

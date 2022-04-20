@@ -12,7 +12,7 @@ echo -e "\e[5m                                                                  
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
 echo
-sleep 2
+sleep 1
 
 if [[ -f /var/www/html/mbilling/index.php ]]; then
   echo "this server already has Viaset Billing installed";
@@ -21,7 +21,7 @@ fi
 
 # Linux Distribution CentOS or Debian
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -55,7 +55,7 @@ get_linux_distribution ()
 
 get_linux_distribution
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -80,7 +80,7 @@ startup_services()
     fi
 }
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -163,7 +163,7 @@ set_timezone ()
 
 set_timezone
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -190,7 +190,7 @@ fi
 touch /root/passwordMysql.log
 echo "$password" > /root/passwordMysql.log
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -201,7 +201,7 @@ echo -e "\e[32;42m==============================================================
 echo -e "\e[32;42m=================================================================================\e[m";
 echo
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -224,7 +224,7 @@ gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1' > /etc/yum.repos.d/MariaDB.repo 
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -251,26 +251,14 @@ elif  [ ${DIST} = "CENTOS" ]; then
     yum -y install yum-utils gcc.`uname -m` gcc-c++.`uname -m` make.`uname -m` git.`uname -m` wget.`uname -m` bison.`uname -m` openssl-devel.`uname -m` ncurses-devel.`uname -m` doxygen.`uname -m` newt-devel.`uname -m` mlocate.`uname -m` lynx.`uname -m` tar.`uname -m` wget.`uname -m` nmap.`uname -m` bzip2.`uname -m` mod_ssl.`uname -m` speex.`uname -m` speex-devel.`uname -m` unixODBC.`uname -m` unixODBC-devel.`uname -m` libtool-ltdl.`uname -m` sox libtool-ltdl-devel.`uname -m` flex.`uname -m` screen.`uname -m` autoconf automake libxml2.`uname -m` libxml2-devel.`uname -m` sqlite* subversion
     yum-config-manager --enable remi-php71
     yum -y install php.`uname -m` php-cli.`uname -m` php-devel.`uname -m` php-gd.`uname -m` php-mbstring.`uname -m` php-pdo.`uname -m` php-xml.`uname -m` php-xmlrpc.`uname -m` php-process.`uname -m` php-posix libuuid uuid uuid-devel libuuid-devel.`uname -m`
-    yum -y install jansson.`uname -m` jansson-devel.`uname -m` unzip.`uname -m` ntpd
-	
-	sleep 2
-	echo
-	echo -e "\e[32;42m=================================================================================\e[m";
-	echo -e "\e[32;42m=================================================================================\e[m";
-	echo "";
-	echo " -7.1- Installing MariaDB Dependencies, Look for Errors";
-	echo "";
-	echo -e "\e[32;42m=================================================================================\e[m";
-	echo -e "\e[32;42m=================================================================================\e[m";
-	echo
-    
+    yum -y install jansson.`uname -m` jansson-devel.`uname -m` unzip.`uname -m` ntp
 	yum -y install mysql mariadb-server mariadb-devel mariadb php-mysql mysql-connector-odbc
     yum -y install xmlstarlet libsrtp libsrtp-devel dmidecode gtk2-devel binutils-devel svn libtermcap-devel libtiff-devel audiofile-devel cronie cronie-anacron
     yum -y install perl perl-libwww-perl perl-LWP-Protocol-https perl-JSON cpan flac libcurl-devel nss
     yum -y install libpcap-devel autoconf automake git ncurses-devel ssmtp htop
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -285,7 +273,7 @@ if  [ ${DIST} = "CENTOS" ]; then
 	yum -y install lynx tftp-server sendmail sendmail-cf sox crontabs gnutls-devel php-pear
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -301,7 +289,7 @@ cd /var/www/html/mbilling
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build-onfl.tar.gz
 tar -xzf viaset-build-onfl.tar.gz
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -321,7 +309,7 @@ make clean
 make && make install
 ldconfig
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -344,21 +332,20 @@ mkdir /var/run/asterisk
 mkdir /var/log/asterisk
 chown -R asterisk:asterisk /var/run/asterisk
 chown -R asterisk:asterisk /var/log/asterisk
-contrib/scripts/install_prereq install
-./configure
-contrib/scripts/get_mp3_source.sh
 make clean
+./configure
 make menuselect.makeopts
 menuselect/menuselect --enable res_config_mysql  menuselect.makeopts
 menuselect/menuselect --enable format_mp3  menuselect.makeopts
 menuselect/menuselect --enable app_setcallerid  menuselect.makeopts
+contrib/scripts/get_mp3_source.sh
 make
 make install
 make samples
 make config
 ldconfig
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -383,7 +370,7 @@ cd sngrep
 make && make install 
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -396,7 +383,7 @@ echo
 
 chmod -R 777 /tmp
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -445,7 +432,7 @@ if [ ${DIST} = "CENTOS" ]; then
     " >> /etc/httpd/conf.d/deflate.conf
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -491,7 +478,7 @@ AddType application/octet-stream .csv
 </Files>
 ' >> ${HTTP_CONFIG}
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -522,7 +509,7 @@ elif [ ${DIST} = "DEBIAN" ]; then
     sed -i 's/<Directory \/var\/www\/>/<Directory \/var\/www\/html\/>/' ${HTTP_CONFIG}
 fi;
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -533,7 +520,7 @@ echo -e "\e[32;42m==============================================================
 echo -e "\e[32;42m=================================================================================\e[m";
 echo
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -556,7 +543,7 @@ else [ -f /etc/redhat-release ]
     systemctl enable ntpd
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -569,7 +556,7 @@ echo
 
   mysql -uroot -e "UPDATE mysql.user SET password=PASSWORD('${password}') WHERE user='root'; FLUSH PRIVILEGES;"
   
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -636,7 +623,7 @@ fi;
 
 startup_services
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -655,7 +642,7 @@ cd  /var/www/html/mbilling/resources/images/
 rm -rf lock-screen-background.jpg
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/lock-screen-background.jpg
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -684,7 +671,7 @@ touch /etc/asterisk/iax_magnus_user.conf
 touch /etc/asterisk/musiconhold_magnus.conf
 touch /etc/asterisk/queues_magnus.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -749,7 +736,7 @@ installEs() {
   cp -n /var/www/html/mbilling/resources/sounds/es/* /var/lib/asterisk/sounds
 }
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -772,7 +759,7 @@ else
   selectLanguage
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -786,6 +773,8 @@ echo
 cd /var/www/html/mbilling
 
 echo $'[billing]
+;exten => _[*0-9].,1,Set(CALLERID(num)=${IF($[ ${CALLERID(num)} = 2000 ]?${EXTEN:0:5}${RAND(210000,999999)}:${CALLERID(num)}) })
+;exten => _[*0-9].,2,NoOp(## DIALED ## ${EXTEN} ## CALL-ID ## ${CALLERID(num)} ##)
 exten => _[*0-9].,1,AGI("/var/www/html/mbilling/resources/asterisk/mbilling.php")
   same => n,Hangup()
 
@@ -802,7 +791,7 @@ exten => s,1,Set(MASTER_CHANNEL(TRUNKANSWERTIME)=${EPOCH})
 
 ' > /etc/asterisk/extensions_magnus.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -829,7 +818,7 @@ read = system,call,log,verbose,agent,user,config,dtmf,reporting,cdr,dialplan
 write = system,call,agent,user,config,command,reporting,originate
 " > /etc/asterisk/manager.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -844,7 +833,7 @@ echo "#include extensions_magnus.conf" >> /etc/asterisk/extensions.conf
 echo '#include extensions_magnus_did.conf' >> /etc/asterisk/extensions.conf
 echo "#include musiconhold_magnus.conf" >> /etc/asterisk/musiconhold.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -859,7 +848,7 @@ echo "[settings]
 voicemail => mysql,general,pkg_voicemail_users
 " > /etc/asterisk/extconfig.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -889,7 +878,7 @@ noload => cel_sqlite3_custom.so
 noload => res_format_attr_celt.so
 " >> /etc/asterisk/modules.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -935,7 +924,7 @@ echo "
 }
 " > /etc/logrotate.d/asterisk
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -957,7 +946,7 @@ mysql -uroot -p${password} -e "update mysql.user set plugin='' where User='root'
 fi;
 mysql mbilling -u root -p${password}  < /var/www/html/mbilling/script/database.sql
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -975,12 +964,12 @@ dbuser = mbillingUser
 dbpass = $MBillingMysqlPass
 " > /etc/asterisk/res_config_mysql.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
 echo "";
-echo " -34- Updating Data Directories in asterisk.conf";
+echo " -34- Updating Data Directories and adding Options in asterisk.conf";
 echo "";
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -997,33 +986,31 @@ astagidir => /var/lib/asterisk/agi-bin
 astspooldir => /var/spool/asterisk
 astrundir => /var/run/asterisk
 astlogdir => /var/log/asterisk
-[options]
-documentation_language = en_US  
-' > /etc/asterisk/asterisk.conf
 
-sleep 2
-echo
-echo -e "\e[32;42m=================================================================================\e[m";
-echo -e "\e[32;42m=================================================================================\e[m";
-echo "";
-echo " -35- Adding Asterisk options verbose=5, debug=0 and maxfiles=500000";
-echo "";
-echo -e "\e[32;42m=================================================================================\e[m";
-echo -e "\e[32;42m=================================================================================\e[m";
-echo
-
-echo "
 [options]
+documentation_language = en_US
 verbose = 5
 debug = 0
 maxfiles = 500000
+' > /etc/asterisk/asterisk.conf
 
-[compat]
+sleep 1
+echo
+echo -e "\e[32;42m=================================================================================\e[m";
+echo -e "\e[32;42m=================================================================================\e[m";
+echo "";
+echo " -35- Adding Asterisk Compatibility Options";
+echo "";
+echo -e "\e[32;42m=================================================================================\e[m";
+echo -e "\e[32;42m=================================================================================\e[m";
+echo
+
+echo "[compat]
 pbx_realtime=1.6
 res_agi=1.6
 app_set=1.6" >> /etc/asterisk/asterisk.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1037,7 +1024,7 @@ echo
 echo 500000 > /proc/sys/fs/file-max
 echo "fs.file-max=500000">>/etc/sysctl.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1068,7 +1055,7 @@ echo '
 * soft sigpending unlimited
 * hard sigpending unlimited' >> /etc/security/limits.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1104,7 +1091,7 @@ echo "
 chmod 600 $CRONPATH
 crontab $CRONPATH
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1146,7 +1133,7 @@ ignoreregexpire=yes
 #include sip_magnus.conf
 " > /etc/asterisk/sip.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1169,7 +1156,7 @@ autokill=yes
 #include iax_magnus.conf
 " > /etc/asterisk/iax.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1184,7 +1171,7 @@ echo "
 #include queues_magnus.conf
 " >> /etc/asterisk/queues.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1205,7 +1192,7 @@ User-agent: *
 Disallow: /mbilling/
 " > /var/www/html/robots.txt
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1254,7 +1241,7 @@ echo
 
 install_fail2ban
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1277,7 +1264,10 @@ iptables -P OUTPUT ACCEPT
 iptables -A INPUT -p udp -m udp --dport 5060 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 10000:20000 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 5544 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 443 -j DROP
+iptables -A INPUT -p tcp -m tcp --dport 111 -j DROP
+iptables -A INPUT -p udp -m udp --dport 111 -j DROP
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "friendly-scanner" --algo bm
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "sundayddr" --algo bm
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "sipsak" --algo bm
@@ -1295,7 +1285,7 @@ elif [ ${DIST} = "CENTOS" ]; then
     systemctl restart iptables
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1309,7 +1299,7 @@ echo
 touch /var/www/html/mbilling/protected/runtime/application.log
 chmod 655 /var/www/html/mbilling/protected/runtime/application.log
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1361,7 +1351,7 @@ failregex = .* Username or password is wrong - User .* from IP - <HOST>
 ignoreregex =
 ' > /etc/fail2ban/filter.d/mbilling_login.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1463,7 +1453,7 @@ bantime = 3600
  " >> /etc/fail2ban/jail.local
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1484,7 +1474,7 @@ failregex = ^<HOST> \[.*\]$
 ignoreregex =
 " > /etc/fail2ban/filter.d/ip-blacklist.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1505,7 +1495,7 @@ messages => notice,warning,error
 magnus => debug
 " > /etc/asterisk/logger.conf
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1520,7 +1510,7 @@ if [ ${DIST} = "CENTOS" ]; then
   cp -rf /tmp/fail2ban/build/fail2ban.service /usr/lib/systemd/system/fail2ban.service
 fi
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1539,7 +1529,7 @@ iptables -L -v
 
 php /var/www/html/mbilling/cron.php updatemysql
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1584,7 +1574,7 @@ echo ===============================================================
 echo 
 
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1691,7 +1681,7 @@ processor_type;
         echo "you can find codecs installation scripts in http://asterisk.hosting.lv";
     fi;
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
@@ -1707,7 +1697,7 @@ asterisk -rx 'module load codec_g723.so'
 sleep 4
 asterisk -rx 'core show translation'
 
-sleep 2
+sleep 1
 echo
 echo -e "\e[32;42m=================================================================================\e[m";
 echo -e "\e[32;42m=================================================================================\e[m";
