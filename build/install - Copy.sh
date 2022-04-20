@@ -185,14 +185,13 @@ fi
 
 mkdir -p /var/www/html/mbilling
 cd /var/www/html/mbilling
-wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build-onfl.tar.gz
-tar -xzf viaset-build-onfl.tar.gz
+wget --no-check-certificate https://raw.githubusercontent.com/magnussolution/magnusbilling7/source/build/MagnusBilling-current.tar.gz
+tar xzf MagnusBilling-current.tar.gz
 
 echo
 echo '----------- Install PJPROJECT ----------'
 echo
 sleep 1
-
 cd /usr/src
 wget --no-check-certificate http://www.digip.org/jansson/releases/jansson-2.7.tar.gz
 tar -zxvf jansson-2.7.tar.gz
@@ -206,12 +205,11 @@ echo
 echo '----------- Install Asterisk 13 ----------'
 echo
 sleep 1
-
 cd /usr/src
 rm -rf asterisk*
 clear
-wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/asterisk.tar.gz
-tar -xzf asterisk.tar.gz
+mv /var/www/html/mbilling/script/asterisk-13.35.0.tar.gz /usr/src/
+tar xzvf asterisk-13.35.0.tar.gz
 rm -rf asterisk-13.35.0.tar.gz
 cd asterisk-*
 useradd -c 'Asterisk PBX' -d /var/lib/asterisk asterisk
