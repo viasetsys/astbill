@@ -323,32 +323,6 @@ echo
 cd /usr/src
 rm -rf asterisk*
 
-wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/asterisk-orig.tar.gz
-tar -xzf asterisk-orig.tar.gz
-rm -rf asterisk-13.35.0.tar.gz
-cd asterisk-*
-useradd -c 'Asterisk PBX' -d /var/lib/asterisk asterisk
-mkdir /var/run/asterisk
-mkdir /var/log/asterisk
-chown -R asterisk:asterisk /var/run/asterisk
-chown -R asterisk:asterisk /var/log/asterisk
-contrib/scripts/install_prereq install
-./configure --libdir=/usr/lib64
-make menuselect.makeopts
-menuselect/menuselect --enable res_config_mysql  menuselect.makeopts
-menuselect/menuselect --enable format_mp3  menuselect.makeopts
-menuselect/menuselect --enable app_setcallerid  menuselect.makeopts
-contrib/scripts/get_mp3_source.sh
-make
-make install
-make samples
-make config
-ldconfig
-
-
-cd /usr/src
-rm -rf asterisk*
-
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/asterisk-patch.tar.gz
 tar -xzf asterisk-patch.tar.gz
 rm -rf asterisk-13.35.0.tar.gz
