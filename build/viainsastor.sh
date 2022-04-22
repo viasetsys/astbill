@@ -332,8 +332,8 @@ mkdir /var/run/asterisk
 mkdir /var/log/asterisk
 chown -R asterisk:asterisk /var/run/asterisk
 chown -R asterisk:asterisk /var/log/asterisk
-contrib/scripts/install_prereq install
-./configure --libdir=/usr/lib64
+make clean
+./configure
 make menuselect.makeopts
 menuselect/menuselect --enable res_config_mysql  menuselect.makeopts
 menuselect/menuselect --enable format_mp3  menuselect.makeopts
