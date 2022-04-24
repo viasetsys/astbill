@@ -288,8 +288,8 @@ mkdir -p /var/www/html/mbilling
 cd /var/www/html/mbilling
 wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build-onfl.tar.gz
 tar -xzf viaset-build-onfl.tar.gz
-sed -i 's/M4MqoAlxGkFdE16n/$password/g' /var/www/html/mbilling/protected/commands/MassiveCallCommand.php
-sed -i 's/M4MqoAlxGkFdE16n/$password/g' /var/www/html/mbilling/resources/asterisk/mbilling.php
+sed -i 's/M4MqoAlxGkFdE16n/'"$password"'/g' /var/www/html/mbilling/protected/commands/MassiveCallCommand.php
+sed -i 's/M4MqoAlxGkFdE16n/'"$password"'/g' /var/www/html/mbilling/resources/asterisk/mbilling.php
 
 sleep 1
 echo
