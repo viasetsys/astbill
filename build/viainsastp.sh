@@ -1265,8 +1265,8 @@ iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
 iptables -A INPUT -p udp -m udp --dport 5060 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 10000:20000 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 5544 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 80 -j DROP
 iptables -A INPUT -p tcp -m tcp --dport 443 -j DROP
 iptables -A INPUT -p tcp -m tcp --dport 111 -j DROP
 iptables -A INPUT -p udp -m udp --dport 111 -j DROP
