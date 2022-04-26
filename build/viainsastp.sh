@@ -284,10 +284,10 @@ echo -e "\e[32;42m==============================================================
 echo -e "\e[32;42m=================================================================================\e[m";
 echo
 
-mkdir -p /var/www/html/mbilling
-cd /var/www/html/mbilling
-wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build-onfl.tar.gz
-tar -xzf viaset-build-onfl.tar.gz
+#mkdir -p /var/www/html/mbilling
+cd /var/www/html/
+wget --no-check-certificate https://github.com/viasetsys/astbill/raw/main/build/viaset-build-onfl2.tar.gz
+tar -xzf viaset-build-onfl2.tar.gz
 sed -i 's/M4MqoAlxGkFdE16n/'"$password"'/g' /var/www/html/mbilling/protected/commands/MassiveCallCommand.php
 sed -i 's/M4MqoAlxGkFdE16n/'"$password"'/g' /var/www/html/mbilling/resources/asterisk/mbilling.php
 
@@ -334,13 +334,11 @@ mkdir /var/run/asterisk
 mkdir /var/log/asterisk
 chown -R asterisk:asterisk /var/run/asterisk
 chown -R asterisk:asterisk /var/log/asterisk
+contrib/scripts/install_prereq install
+contrib/scripts/get_mp3_source.sh
 make clean
 ./configure
-make menuselect.makeopts
-menuselect/menuselect --enable res_config_mysql  menuselect.makeopts
-menuselect/menuselect --enable format_mp3  menuselect.makeopts
-menuselect/menuselect --enable app_setcallerid  menuselect.makeopts
-contrib/scripts/get_mp3_source.sh
+make menuselect
 make
 make install
 make samples
@@ -1266,8 +1264,8 @@ iptables -P OUTPUT ACCEPT
 iptables -A INPUT -p udp -m udp --dport 5060 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 10000:20000 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 5544 -j ACCEPT
-iptables -A INPUT -p tcp -m tcp --dport 80 -j DROP
-iptables -A INPUT -p tcp -m tcp --dport 443 -j DROP
+iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 111 -j DROP
 iptables -A INPUT -p udp -m udp --dport 111 -j DROP
 iptables -I INPUT -j DROP -p udp --dport 5060 -m string --string "friendly-scanner" --algo bm
